@@ -1,0 +1,101 @@
+.navigationLogged {
+    display: flex;
+    flex-direction: row;
+}
+
+.navigationLogged__burger {
+    display: none;
+    width: 44px;
+    height: 44px;
+    font-size: 44px;
+    margin: 15px 30px 15px 0;
+    border: none;
+    background: transparent;
+    padding: 0;
+}
+
+.navigationLogged__movies {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 18px;
+    text-align: right;
+    color: #000000;
+    border: none;
+    background: transparent;
+    margin: 28px 20px 28px 0;
+    padding: 0;
+    cursor: pointer;
+}
+
+.navigationLogged__saved-movies {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+    text-align: right;
+    color: #000000;
+    border: none;
+    background: transparent;
+    padding: 0;
+    margin: 28px 50px 28px 0;
+    cursor: pointer;
+}
+
+.navigationLogged__account {
+    display: flex;
+    flex-direction: row;    
+    border: 2px solid rgba(170, 170, 170, .2);;
+    border-radius: 50px;
+    background: transparent;
+    /* width: 100px;
+    height: 32px; */
+    margin: 21px 70px 21px 0;
+    padding: 0;
+}
+
+.navigationLogged__logo {
+    height: 14px;
+    width: 12px;
+    color: #000000;
+    margin: 9px 7px 9px 12px;
+    padding: 0;
+}
+
+.navigationLogged__account-name {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    color: #000000;
+    margin: 7px 12px 7px 0;
+    padding: 0;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 800px) {
+    .navigationLogged__buttons {
+        display: none;
+    }
+
+    .navigationLogged__account {
+        display: none;
+    }
+
+    .navigationLogged__burger {
+        display: block;
+    }
+
+}
+
+@media screen and (max-width: 430px) {
+    .navigationLogged__burger {
+        font-size: 40px;
+        height: 43px;
+        width: 40px;
+    }
+}
