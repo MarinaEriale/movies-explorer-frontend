@@ -6,7 +6,7 @@
     background: transparent;
     align-items: center;
     border: none;
-    font-family: 'Inter';
+    font-family: 'Inter', 'Arial', sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 12px;
@@ -24,7 +24,7 @@
     background: #2BE080;
     border-radius: 3px;
     border: none;
-    font-family: 'Inter';
+    font-family: 'Inter', 'Arial', sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 12px;

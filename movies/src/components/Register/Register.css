@@ -9,7 +9,7 @@
 }
 
 .register__title {
-    font-family: 'Inter';
+    font-family: 'Inter', 'Arial', sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 24px;
@@ -32,7 +32,7 @@
 }
 
 .register__label {
-    font-family: 'Inter';
+    font-family: 'Inter', 'Arial', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 10px;
@@ -44,7 +44,7 @@
 .register__text {
     border: none;
     border-bottom: 1px solid #E8E8E8;
-    font-family: 'Inter';
+    font-family: 'Inter', 'Arial', sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 14px;
@@ -61,7 +61,7 @@
     width: 396px;
     height: 45px;
     margin: 110px 0 0 0;    
-    font-family: 'Inter';
+    font-family: 'Inter', 'Arial', sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 14px;
@@ -72,7 +72,7 @@
 }
 
 .register__login {
-    font-family: 'Inter';
+    font-family: 'Inter', 'Arial', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -84,7 +84,7 @@
 }
 
 .register__login-link {
-    font-family: 'Inter';
+    font-family: 'Inter', 'Arial', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 14px;

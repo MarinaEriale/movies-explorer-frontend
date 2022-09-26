@@ -8,13 +8,13 @@ import BurgerMenuPopup from "../BurgerMenuPopup/BurgerMenuPopup";
 
 function Movies() {
   return (
-    <div className="movies__screen">
+    <section className="movies__screen">
       <HeaderLogged />
       <SearchForm />
       <MoviesCardList />
       <Footer />
       <BurgerMenuPopup />
-    </div>
+    </section>
   );
 }
 

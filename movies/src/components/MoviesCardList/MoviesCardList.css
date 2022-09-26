@@ -11,8 +11,8 @@
     padding: 0;
     margin: 0;
     justify-content: center;
-    /* max-height: 600px;
-    overflow: hidden; */
+    max-height: 600px;
+    overflow: hidden;
 }
 
 .moviesCardList__else-container {
@@ -64,17 +64,22 @@
 @media screen and (max-width: 760px) {
     .moviesCardList__list {
         grid-template-columns: repeat(1, 1fr);
-        max-height: calc(235px * 5 + 20px * 4 + 90px);
+        /* max-height: calc(235px * 5 + 20px * 4 + 90px); */
     }
 }
 
 @media screen and (max-width: 430px) {
     .moviesCardList {
         margin-top: 40px;
-        margin-left: calc((100% - 300px) / 2);
-        margin-right: calc((100% - 300px) / 2);
+        margin-left: calc((100% - 300px) / 4);
+        margin-right: calc((100% - 300px) / 4);
+    }
+
+    .moviesCardList__else-button {
+        font-size: 12px;
+        line-height: 15px;
+        width: 240px;
     }
 }
-
 
 

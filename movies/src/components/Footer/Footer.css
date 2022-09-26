@@ -6,7 +6,7 @@
 }
 
 .footer__info {
-    font-family: 'Inter';
+    font-family: 'Inter', 'Arial', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 13px;
@@ -19,7 +19,7 @@
 }
 
 .footer__copyright {
-    font-family: 'Inter';
+    font-family: 'Inter', 'Arial', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 13px;
@@ -36,7 +36,7 @@
 
 .footer__link {
     list-style: none;
-    font-family: 'Inter';
+    font-family: 'Inter', 'Arial', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 13px;
@@ -45,7 +45,14 @@
     color: #000000;
     display: inline-block;
     margin: 0 0 0 20px;
+    }
+
+.footer__link-style {
+    text-decoration: none;
+    cursor: pointer;
+    color: #000000;
 }
+
 
 @media screen and (max-width: 800px) {
     .footer__info {

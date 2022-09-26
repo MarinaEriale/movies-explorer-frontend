@@ -3,7 +3,7 @@ import "./AboutProject.css";
 
 function AboutProject() {
   return (
-    <>
+    <section className="aboutProject">
       <h2 className="aboutProject__title">О проекте</h2>
       <ul className="aboutProject__table">
         <li className="aboutProject__table-cell">
@@ -37,7 +37,7 @@ function AboutProject() {
           <p className="aboutProject__scale-code">Front-end</p>
         </div>
       </div>
-    </>
+    </section>
   );
 }
 

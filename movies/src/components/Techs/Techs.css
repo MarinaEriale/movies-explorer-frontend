@@ -6,7 +6,7 @@
 
 
 .techs__title {
-    font-family: 'Inter';
+    font-family: 'Inter', 'Arial', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 22px;
@@ -22,7 +22,7 @@
     margin: 90px 0 0 0;
     padding: 0;
     text-align: center;
-    font-family: 'Inter';
+    font-family: 'Inter', 'Arial', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 50px;
@@ -32,7 +32,7 @@
 }
 
 .techs__diploma {
-    font-family: 'Inter';
+    font-family: 'Inter', 'Arial', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -63,7 +63,7 @@
     text-align: center;
     padding-top: 21px;
     padding-bottom: 22px;
-    font-family: 'Inter';
+    font-family: 'Inter', 'Arial', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -130,4 +130,10 @@
         margin-bottom: 10px;
     }
 
+}
+
+@media screen and (max-width: 400px) {
+    .techs__background {
+        background-color: #FFFFFF;
+    }
 }

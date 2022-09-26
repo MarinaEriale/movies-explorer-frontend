@@ -5,7 +5,7 @@ import registerLogo from "../../images/logo.svg";
 
 function Register() {
   return (
-    <div className="register">
+    <section className="register">
       <div className="register__container">
         <Link to="/">
           <img
@@ -23,6 +23,7 @@ function Register() {
             type="text"
             placeholder="Имя"
             className="register__text"
+            required="required"
           />
           <label className="register__label">E-mail</label>
           <input
@@ -31,6 +32,7 @@ function Register() {
             type="email"
             placeholder="E-mail"
             className="register__text"
+            required="required"
           />
           <label className="register__label">Пароль</label>
           <input
@@ -39,6 +41,7 @@ function Register() {
             type="password"
             placeholder="Пароль"
             className="register__text"
+            required="required"
           />
           <button type="submit" className="register__enter-button">
             Зарегистрироваться
@@ -48,7 +51,7 @@ function Register() {
           </p>
         </form>
       </div>
-    </div>
+    </section>
   );
 }
 

@@ -5,7 +5,7 @@ import loginLogo from "../../images/logo.svg";
 
 function Login() {
   return (
-    <div className="login">
+    <section className="login">
       <div className="login__container">
         <Link to="/">
           <img
@@ -25,6 +25,7 @@ function Login() {
             type="email"
             placeholder="E-mail"
             className="login__text"
+            required="required"
           />
           <label htmlFor="password" className="login__label">
             Пароль
@@ -35,6 +36,7 @@ function Login() {
             type="password"
             placeholder="Пароль"
             className="login__text"
+            required="required"
           />
           <button type="submit" className="login__enter-button">
             Войти
@@ -44,7 +46,7 @@ function Login() {
           </p>
         </form>
       </div>
-    </div>
+    </section>
   );
 }
 

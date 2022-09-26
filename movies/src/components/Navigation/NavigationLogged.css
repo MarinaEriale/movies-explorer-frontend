@@ -7,7 +7,7 @@
     display: none;
     width: 44px;
     height: 44px;
-    font-size: 44px;
+    /* font-size: 44px; */
     margin: 15px 30px 15px 0;
     border: none;
     background: transparent;
@@ -15,7 +15,7 @@
 }
 
 .navigationLogged__movies {
-    font-family: 'Inter';
+    font-family: 'Inter', 'Arial', sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 14px;
@@ -30,7 +30,7 @@
 }
 
 .navigationLogged__saved-movies {
-    font-family: 'Inter';
+    font-family: 'Inter', 'Arial', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -65,7 +65,7 @@
 }
 
 .navigationLogged__account-name {
-    font-family: 'Inter';
+    font-family: 'Inter', 'Arial', sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 14px;
@@ -94,8 +94,10 @@
 
 @media screen and (max-width: 430px) {
     .navigationLogged__burger {
-        font-size: 40px;
-        height: 43px;
-        width: 40px;
+        height: 20.5px;
+        width: 22px;
+        padding: 12.5px 9px 10px 9px;
+        margin: 15px 14px 16px 0;
     }
+
 }

@@ -1,7 +1,7 @@
 .aboutProject__title {
     margin: 110px 70px 0 70px;
     padding: 0 0 23px 0;
-    font-family: 'Inter';
+    font-family: 'Inter', 'Arial', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 22px;
@@ -27,7 +27,7 @@
 }
 
 .aboutProject__table-heading {
-    font-family: 'Inter';
+    font-family: 'Inter', 'Arial', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 20px;
@@ -39,7 +39,7 @@
 }
 
 .aboutProject__table-text {
-    font-family: 'Inter';
+    font-family: 'Inter', 'Arial', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -60,7 +60,7 @@
 .aboutProject__scale-weeks {
     width: 200px;
     height: 18px;
-    font-family: 'Inter';
+    font-family: 'Inter', 'Arial', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -83,7 +83,7 @@
 }
 
 .aboutProject__scale-code {
-    font-family: 'Inter';
+    font-family: 'Inter', 'Arial', sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 14px;

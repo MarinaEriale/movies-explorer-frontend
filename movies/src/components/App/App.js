@@ -8,11 +8,14 @@ import NotFound from "../NotFound/NotFound";
 import Movies from "../Movies/Movies";
 import SavedMovies from "../SavedMovies/SavedMovies";
 import Profile from "../Profile/Profile";
+// import Header from "../Header/Header";
+// import Footer from "../Footer/Footer";
 
 function App() {
   return (
     <div className="background">
       <div className="page">
+        {/* <Header /> */}
         <Routes>
           <Route exact path="/" element={<Main />} />
           <Route path="/signup" element={<Register />} />
@@ -21,7 +24,8 @@ function App() {
           <Route path="/saved-movies" element={<SavedMovies />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="*" element={<NotFound />} />
-        </Routes>        
+        </Routes>
+        {/* <Footer /> */}
       </div>
     </div>
   );

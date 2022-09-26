@@ -31,7 +31,7 @@
 }
 
 .movieCard__text {
-    font-family: 'Inter';
+    font-family: 'Inter', 'Arial', sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 13px;
@@ -43,7 +43,7 @@
 }
 
 .movieCard__duration {
-    font-family: 'Inter';
+    font-family: 'Inter', 'Arial', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 11px;
@@ -62,14 +62,17 @@
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.09);
     border-radius: 50px;
     cursor: pointer;
+    padding: 0;
 }
 
 .movieCard__like-button_dislike {
     box-shadow: none;
     font-size: 8px;
-    font-family: 'Inter';
+    font-family: 'Inter', 'Arial', sans-serif;
     font-style: normal;
     font-weight: 500;
+    
+    background-color: transparent;
 }
 
 @media screen and (max-width: 800px) {
