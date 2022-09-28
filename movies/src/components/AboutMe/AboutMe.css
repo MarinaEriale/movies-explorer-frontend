@@ -105,14 +105,26 @@
     margin: 40px 70px 0 70px;
     padding: 0;
     border-bottom: 1px solid #E8E8E8;
+    
+}
+
+.aboutMe__site-link {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    text-decoration: none;
 }
 
 .aboutMe__sites-name {
     margin: 0;
     padding: 0 0 19px 0;
+    font-family: 'Inter', 'Arial', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 50px;
+    letter-spacing: -0.04em;
+    color: #000000;
 }
 
 .aboutMe__arrow {
@@ -126,6 +138,7 @@
     line-height: 60px;
     letter-spacing: -0.04em;
     text-decoration: none;
+  
 }
 
 
@@ -179,6 +192,11 @@
     .aboutMe__sites {
         margin-left: 50px;
         margin-right: 50px;
+        font-size: 28px;
+        line-height: 50px;
+    }
+
+    .aboutMe__sites-name {
         font-size: 28px;
         line-height: 50px;
     }
@@ -243,11 +261,16 @@
     }
 
     .aboutMe__sites {
-        font-size: 18px;
-        line-height: 28px;
+        margin-right: 14px;
         margin-left: 14px;
         margin-top: 40px;
     }
+
+    .aboutMe__sites-name {
+        font-size: 18px;
+        line-height: 28px;
+    }
+
 
     .aboutMe__arrow {
         font-size: 18px;

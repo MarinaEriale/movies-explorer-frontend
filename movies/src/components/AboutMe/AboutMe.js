@@ -35,36 +35,39 @@ function AboutMe() {
       <p className="aboutMe__portfolio">Портфолио</p>
       <ul className="aboutMe__site-list">
         <li className="aboutMe__sites">
-          <p className="aboutMe__sites-name">Статичный сайт</p>
+          
           <a
             href="https://marinaeriale.github.io/how-to-learn/"
             target="_blank"
             rel="noreferrer"
-            className="aboutMe__arrow"
+            className="aboutMe__site-link"
           >
-            &#129125;
+            <p className="aboutMe__sites-name">Статичный сайт</p>
+            <p className="aboutMe__arrow">&#129125;</p>
           </a>
         </li>
         <li className="aboutMe__sites">
-          <p className="aboutMe__sites-name">Адаптивный сайт</p>
+          
           <a
             href="https://marinaeriale.github.io/russian-travel/"
             target="_blank"
             rel="noreferrer"
-            className="aboutMe__arrow"
+            className="aboutMe__site-link"
           >
-            &#129125;
+            <p className="aboutMe__sites-name">Адаптивный сайт</p>
+            <p className="aboutMe__arrow">&#129125;</p>
           </a>
         </li>
         <li className="aboutMe__sites">
-          <p className="aboutMe__sites-name">Одностраничное приложение</p>
+          
           <a
             href="https://marina.place.nomoredomains.sbs/"
             target="_blank"
             rel="noreferrer"
-            className="aboutMe__arrow"
+            className="aboutMe__site-link"
           >
-            &#129125;
+            <p className="aboutMe__sites-name">Одностраничное приложение</p>
+            <p className="aboutMe__arrow">&#129125;</p>
           </a>
         </li>
       </ul>
