@@ -1,19 +1,18 @@
 import React from "react";
 import "./MoviesCard.css";
-import movieScreen from "../../images/movie.png";
 
-function MovieCard() {
+function MovieCard(props) {
   return (
     <div className="movieCard">
       <img
         className="movieCard__image"
-        src={movieScreen}
+        src={`https://api.nomoreparties.co${props.data.image.url}`}
         alt="Скриншот из фильма"
       />
       <div className="movieCard__info">
         <div className="movieCard__text-container">
-          <h2 className="movieCard__text">33 слова о дизайне</h2>
-          <p className="movieCard__duration">1ч42м</p>
+          <h2 className="movieCard__text">{props.data.nameRU}</h2>
+          <p className="movieCard__duration">{props.data.duration}</p>
         </div>
         <div className="movieCard__like">
           <button type="button" className="movieCard__like-button"></button>

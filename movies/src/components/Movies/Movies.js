@@ -6,12 +6,12 @@ import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Footer from "../Footer/Footer";
 import BurgerMenuPopup from "../BurgerMenuPopup/BurgerMenuPopup";
 
-function Movies() {
+function Movies(props) {
   return (
     <section className="movies__screen">
       <HeaderLogged />
       <SearchForm />
-      <MoviesCardList />
+      <MoviesCardList moviesCards={props.moviesCards} />
       <Footer />
       <BurgerMenuPopup />
     </section>

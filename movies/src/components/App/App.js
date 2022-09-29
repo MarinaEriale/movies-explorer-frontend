@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import Main from "../Main/Main";
 import "./App.css";
@@ -8,10 +8,20 @@ import NotFound from "../NotFound/NotFound";
 import Movies from "../Movies/Movies";
 import SavedMovies from "../SavedMovies/SavedMovies";
 import Profile from "../Profile/Profile";
-// import Header from "../Header/Header";
-// import Footer from "../Footer/Footer";
+import moviesApi from "../../utils/MoviesApi";
 
 function App() {
+  const [moviesCards, setMoviesCards] = useState([]);
+
+  React.useEffect(() => {
+    moviesApi
+      .getMoviesCards()
+      .then((data) => setMoviesCards(data))
+      .catch((err) => console.log("Ошибка", err));
+  }, []);
+
+  console.log(moviesCards);
+
   return (
     <div className="background">
       <div className="page">
@@ -20,7 +30,10 @@ function App() {
           <Route exact path="/" element={<Main />} />
           <Route path="/signup" element={<Register />} />
           <Route path="/signin" element={<Login />} />
-          <Route path="/movies" element={<Movies />} />
+          <Route
+            path="/movies"
+            element={<Movies moviesCards={moviesCards}  />}
+          />
           <Route path="/saved-movies" element={<SavedMovies />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="*" element={<NotFound />} />

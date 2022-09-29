@@ -43,7 +43,7 @@ function AboutMe() {
             className="aboutMe__site-link"
           >
             <p className="aboutMe__sites-name">Статичный сайт</p>
-            <p className="aboutMe__arrow">&#129125;</p>
+            <p className="aboutMe__arrow">🡥</p>
           </a>
         </li>
         <li className="aboutMe__sites">
@@ -55,7 +55,7 @@ function AboutMe() {
             className="aboutMe__site-link"
           >
             <p className="aboutMe__sites-name">Адаптивный сайт</p>
-            <p className="aboutMe__arrow">&#129125;</p>
+            <p className="aboutMe__arrow">🡥</p>
           </a>
         </li>
         <li className="aboutMe__sites">
@@ -67,7 +67,7 @@ function AboutMe() {
             className="aboutMe__site-link"
           >
             <p className="aboutMe__sites-name">Одностраничное приложение</p>
-            <p className="aboutMe__arrow">&#129125;</p>
+            <p className="aboutMe__arrow">🡥</p>
           </a>
         </li>
       </ul>
