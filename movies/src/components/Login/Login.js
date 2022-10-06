@@ -1,9 +1,43 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 import loginLogo from "../../images/logo.svg";
+import * as auth from "../../utils/auth";
 
-function Login() {
+function Login({ onLogin }) {
+  const [values, setValues] = useState({
+    email: "",
+    password: "",
+  });
+
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setValues((previousState) => ({
+      ...previousState,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    auth
+      .authorize(values.email, values.password)
+      .then((res) => {
+        if (res.token) {
+          setValues({
+            email: "",
+            password: "",
+          });
+          localStorage.setItem("jwt", res.token);
+          onLogin();
+          navigate("/movies");
+        }
+      })
+      .catch((err) => console.log("Ошибка", err));
+  };
+
   return (
     <section className="login">
       <div className="login__container">
@@ -15,7 +49,7 @@ function Login() {
           />
         </Link>
         <h2 className="login__title">Рады видеть!</h2>
-        <form className="login__form">
+        <form className="login__form" onSubmit={handleSubmit}>
           <label htmlFor="email" className="login__label">
             E-mail
           </label>
@@ -26,6 +60,7 @@ function Login() {
             placeholder="E-mail"
             className="login__text"
             required="required"
+            onChange={handleChange}
           />
           <label htmlFor="password" className="login__label">
             Пароль
@@ -37,12 +72,16 @@ function Login() {
             placeholder="Пароль"
             className="login__text"
             required="required"
+            onChange={handleChange}
           />
           <button type="submit" className="login__enter-button">
             Войти
           </button>
-          <p className="login__register">Ещё не зарегистрированы?
-          <Link to="/signup" className="login__register-link">Регистрация</Link>
+          <p className="login__register">
+            Ещё не зарегистрированы?
+            <Link to="/signup" className="login__register-link">
+              Регистрация
+            </Link>
           </p>
         </form>
       </div>

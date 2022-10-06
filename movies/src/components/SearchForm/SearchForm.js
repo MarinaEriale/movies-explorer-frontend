@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import "./SearchForm.css";
 import magnifier from "../../images/icon.svg";
 import toggle from "../../images/smalltumb.svg";
 
-function SearchForm() {
+function SearchForm (props) {
+  
+
   return (
-    <form className="searchForm">
+    <form className="searchForm" onSubmit={props.handleFormSubmit}>
       <div className="searchForm__buttons">
         <label htmlFor="name">
           <img
@@ -15,12 +17,13 @@ function SearchForm() {
           ></img>
         </label>
         <input
-          id="name"
-          name="name"
+          id="searchPrhase"
+          name="searchPrhase"
           type="text"
           placeholder="Фильм"
           className="searchForm__movie"
           required="required"
+          onChange={props.handleInputChange}
         />
         <button type="submit" className="searchForm__button">
           <p className="searchForm__button-text">Найти</p>
