@@ -22,8 +22,8 @@ function SearchForm() {
           className="searchForm__movie"
           required="required"
         />
-        <button type="submit" className="searchForm__button">
-          <p className="searchForm__button-text">Найти</p>
+        <button type="submit" className="searchForm__button searchForm__button_inactive">
+          <p className="searchForm__button-text searchForm__button-text_inactive">Найти</p>
         </button>
       </div>
       <div className="searchForm__checkbox">

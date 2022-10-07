@@ -42,6 +42,10 @@
     
 }
 
+.searchForm__button_inactive {
+    background: #F8F8F8;
+}
+
 .searchForm__button-text {
     font-family: 'Inter', 'Arial', sans-serif;
     font-style: normal;
@@ -52,6 +56,11 @@
     color: #FFFFFF;    
     padding: 0;
     margin: 8px 10.35px;
+}
+
+
+.searchForm__button-text_inactive {
+    color: #C2C2C2;
 }
 
 .searchForm__short-film {

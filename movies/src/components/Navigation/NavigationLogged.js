@@ -3,7 +3,8 @@ import "./NavigationLogged.css";
 import accLogo from "../../images/acc_logo.svg";
 import { Link } from "react-router-dom";
 
-function NavigationLogged() {
+function NavigationLogged(props) {
+  // console.log(props.handleBurgerClick);
   return (
     <div className="navigationLogged">
       <div className="navigationLogged__buttons">
@@ -26,7 +27,7 @@ function NavigationLogged() {
         ></img>
         <Link to="/profile" className="navigationLogged__account-name">Аккаунт</Link>
       </button>
-      <button className="navigationLogged__burger">&#9776;</button>
+      <button type="button" className="navigationLogged__burger" onClick={props.handleBurgerClick}>&#9776;</button>
     </div>
   );
 }

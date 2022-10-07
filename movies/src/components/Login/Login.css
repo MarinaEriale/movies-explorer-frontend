@@ -71,6 +71,10 @@
     cursor: pointer;
 }
 
+.login__enter-button:hover {
+    opacity: .8;
+}
+
 .login__register {
     font-family: 'Inter', 'Arial', sans-serif;
     font-style: normal;
@@ -94,6 +98,10 @@
     text-decoration: none;
     cursor: pointer;
     padding-left: 6px;
+}
+
+.login__register-link:hover {
+    opacity: .7;
 }
 
 @media screen and (max-width: 800px) {

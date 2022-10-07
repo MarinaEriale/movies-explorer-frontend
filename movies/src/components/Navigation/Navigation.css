@@ -20,6 +20,10 @@
     cursor: pointer;
 }
 
+.navigation__register-button:hover {
+    opacity: .8;
+}
+
 .navigation__enter-button {
     background: #2BE080;
     border-radius: 3px;
@@ -36,6 +40,10 @@
     height: 32px;
     margin: 21px 70px 21px 0;
     cursor: pointer;
+}
+
+.navigation__enter-button:hover {
+    opacity: .8;
 }
 
 @media screen and (max-width: 800px) {

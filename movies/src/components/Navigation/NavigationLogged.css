@@ -1,17 +1,23 @@
 .navigationLogged {
     display: flex;
     flex-direction: row;
+    z-index: 1;
 }
 
 .navigationLogged__burger {
     display: none;
     width: 44px;
     height: 44px;
-    /* font-size: 44px; */
+    font-size: 44px;
     margin: 15px 30px 15px 0;
     border: none;
     background: transparent;
     padding: 0;
+    cursor: pointer;
+}
+
+.navigationLogged__burger:hover {
+    opacity: .8;
 }
 
 .navigationLogged__movies {
@@ -29,6 +35,10 @@
     cursor: pointer;
 }
 
+.navigationLogged__movies:hover {
+    opacity: .7;
+}
+
 .navigationLogged__saved-movies {
     font-family: 'Inter', 'Arial', sans-serif;
     font-style: normal;
@@ -42,6 +52,10 @@
     padding: 0;
     margin: 28px 50px 28px 0;
     cursor: pointer;
+}
+
+.navigationLogged__saved-movies:hover {
+    opacity: .7;
 }
 
 .navigationLogged__account {
@@ -77,6 +91,10 @@
     cursor: pointer;
 }
 
+.navigationLogged__account-name:hover {
+    opacity: .7;
+}
+
 @media screen and (max-width: 800px) {
     .navigationLogged__buttons {
         display: none;
@@ -88,15 +106,15 @@
 
     .navigationLogged__burger {
         display: block;
+        font-size: 40px;
+        height: 43px;
+        width: 40px;
     }
 
 }
 
 @media screen and (max-width: 430px) {
     .navigationLogged__burger {
-        height: 20.5px;
-        width: 22px;
-        padding: 12.5px 9px 10px 9px;
         margin: 15px 14px 16px 0;
     }
 
