@@ -3,9 +3,9 @@
     width: 100%;
     height: 100%;
     z-index: 2;
-    position: absolute;
+    position: fixed;
     right: 0;
-    top: -77px;
+    top: 0;
     display: flex;
     visibility: hidden;
     opacity: 0;
@@ -30,6 +30,13 @@
   width: 520px;
   display: flex;
   flex-direction: column;
+  height: 100vh;
+  justify-content: space-between;
+}
+
+.burgerMenuPopup__buttons {
+    display: flex;
+    flex-direction: column;
 }
 
 .burgerMenuPopup__point {
@@ -79,9 +86,7 @@
     border: 2px solid rgba(170, 170, 170, .2);;
     border-radius: 50px;
     background: transparent;
-    /* width: 100px;
-    height: 32px; */
-    margin: 621px auto 90px auto;
+    margin: 0 auto 90px auto;
     padding: 0;
     align-self: end;
     

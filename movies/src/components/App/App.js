@@ -11,6 +11,7 @@ import Profile from "../Profile/Profile";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import HeaderLogged from "../Header/HeaderLogged";
+import BurgerMenuPopup from "../BurgerMenuPopup/BurgerMenuPopup";
 
 function App() {
   const location = useLocation();  
@@ -46,6 +47,7 @@ function App() {
         {(location.pathname === "/movies" ||
           location.pathname === "/saved-movies" ||
           location.pathname === "/") && <Footer />}
+          <BurgerMenuPopup isBurgerOpened={isBurgerOpened} onClose={closeBurger} handleBurgerClick={handleBurgerClick}/>
       </div>
     </div>
   );

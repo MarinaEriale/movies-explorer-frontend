@@ -82,7 +82,7 @@
     }
 
     .moviesCardList__list{
-        max-height: calc(235px * 5 + 20px * 4 + 90px);
+        max-height: calc(235px * 5 + 20px * 4 + 100px);
     }
 }
 
