@@ -22,6 +22,10 @@ function MoviesCardList() {
         <MovieCard />
         <MovieCard />
         <MovieCard />
+        <MovieCard />
+        <MovieCard />
+        <MovieCard />
+        <MovieCard />
       </div>
       <div className="moviesCardList__else-container">
         <button className="moviesCardList__else-button">Ещё</button>

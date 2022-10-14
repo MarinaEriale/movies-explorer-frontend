@@ -44,7 +44,7 @@ function SearchForm() {
           type="text"
           placeholder="Фильм"
           className="searchForm__movie"
-          // required="required"
+          required="required"
         />
         <button
           type="submit"
