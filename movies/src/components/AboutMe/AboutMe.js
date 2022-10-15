@@ -1,7 +1,6 @@
 import React from "react";
 import "./AboutMe.css";
 import photo from "../../images/photo.png";
-import arrow from "../../images/arrow.svg";
 
 function AboutMe() {
   return (
@@ -44,8 +43,7 @@ function AboutMe() {
             className="aboutMe__site-link"
           >
             <p className="aboutMe__sites-name">Статичный сайт</p>
-            {/* <p className="aboutMe__arrow">🡥</p> */}
-            <img src={arrow} alt="Черная стрелка, указывающая в правый верхний угол экрана" className="aboutMe__arrow"></img>
+            <p className="aboutMe__arrow">🡥</p>
           </a>
         </li>
         <li className="aboutMe__sites">
