@@ -6,9 +6,9 @@ function MoviesCardList(props) {
   return (
     <div className="moviesCardList">
       <div className="moviesCardList__list">
-        {props.moviesCards.map((item) => {
+        {/* {props.moviesCards.map((item) => {
           return <MovieCard key={item.id} data={item} />;
-        })}
+        })} */}
       </div>
       <div className="moviesCardList__else-container">
         <button className="moviesCardList__else-button">Ещё</button>

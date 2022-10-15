@@ -15,33 +15,21 @@ import NotFound from "../NotFound/NotFound";
 import Movies from "../Movies/Movies";
 import SavedMovies from "../SavedMovies/SavedMovies";
 import Profile from "../Profile/Profile";
-import moviesApi from "../../utils/MoviesApi";
+
 import { checkToken } from "../../utils/auth";
 import Header from "../Header/Header";
 import HeaderLogged from "../Header/HeaderLogged";
 import Footer from "../Footer/Footer";
 
 function App() {
-  const [moviesCards, setMoviesCards] = useState([]);
+  // const [moviesCards, setMoviesCards] = useState([]);
   const [loggedIn, setLoggedIn] = useState(false);
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const location = useLocation();
   const [searchQuery, setsearchQuery] = useState([]);
 
-  React.useEffect(() => {
-    moviesApi
-      .getMoviesCards()
-      .then((data) => {
-        setMoviesCards(data);
-        localStorage.setItem("data", JSON.stringify(data));
-      })
-      .catch((err) => console.log("Ошибка", err));
-  }, []);
-
-  const loadedMovies = JSON.parse(localStorage.getItem("data"));
-
-  console.log(loadedMovies);
+  
 
   const handleInputChange = (e) => {
     setsearchQuery(e.target.value);
@@ -51,12 +39,6 @@ function App() {
     e.preventDefault();
     console.log("Сабмит сработал");
   };
-
-  console.log(moviesCards);
-
-  // moviesCards.filter((item) => {
-
-  // })
 
   React.useEffect(() => {
     handleTokenCheck();
@@ -115,7 +97,6 @@ function App() {
               path="/movies"
               element={
                 <Movies
-                  moviesCards={moviesCards}
                   handleInputChange={handleInputChange}
                   handleFormSubmit={handleFormSubmit}
                 />
