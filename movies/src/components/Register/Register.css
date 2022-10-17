@@ -96,6 +96,10 @@
     padding-left: 6px;
 }
 
+.register__login-link:hover {
+    opacity: .7;
+}
+
 
 @media screen and (max-width: 800px) {
     .register__logo {

@@ -4,7 +4,9 @@ import headerLogo from "../../images/logo.svg";
 import NavigationLogged from "../Navigation/NavigationLogged";
 import "./HeaderLogged.css";
 
-function HeaderLogged() {
+function HeaderLogged(props) {
+  // console.log(props.handleBurgerClick);
+
   return (
     <header className="headerLogged">
       <Link to="/">
@@ -14,7 +16,7 @@ function HeaderLogged() {
           className="logo"
         />
       </Link>
-      <NavigationLogged />
+      <NavigationLogged  onClick={props.handleBurgerClick} onClose={props.closeBurger} handleBurgerClick={props.handleBurgerClick}/>
     </header>
   );
 }

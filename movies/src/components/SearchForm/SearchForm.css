@@ -30,6 +30,7 @@
     border: none;    
     padding: 0;
     margin: 70px 0 15px 0;
+    width: 100%;
 }
 
 .searchForm__button {
@@ -37,9 +38,17 @@
     border-radius: 48px;
     border: none;
     height: 34px;
-    margin: 70px 0 15px 0;
+    margin: 70px 0 15px 21.35px;
     padding: 0;
-    
+    cursor: pointer;    
+}
+
+.searchForm__button:hover {
+    opacity: .8;
+}
+
+.searchForm__button_inactive {
+    background: #F8F8F8;
 }
 
 .searchForm__button-text {
@@ -52,6 +61,11 @@
     color: #FFFFFF;    
     padding: 0;
     margin: 8px 10.35px;
+}
+
+
+.searchForm__button-text_inactive {
+    color: #C2C2C2;
 }
 
 .searchForm__short-film {
@@ -105,11 +119,9 @@
     .searchForm__movie {
         font-size: 18px;
         line-height: 22px;
-        width: 60px;
         z-index: 2;
         text-align: left;
         margin-top: 0;
-        margin-right: calc(100% - 60px - 58.65px);
         border-radius: 48px;
         height: 22px;
         margin-top: 98px;

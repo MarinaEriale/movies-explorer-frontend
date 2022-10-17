@@ -77,6 +77,10 @@
     padding: 0;
 }
 
+.profile__edit:hover {
+    opacity: .7;
+}
+
 .profile__exit {
     font-family: 'Inter', 'Arial', sans-serif;
     font-style: normal;
@@ -90,6 +94,10 @@
     cursor: pointer;
     padding: 0;
     margin-top: 16px;
+}
+
+.profile__exit:hover {
+    opacity: .7;
 }
 
 @media screen and (max-width: 800px) {

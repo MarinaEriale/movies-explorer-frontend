@@ -15,6 +15,37 @@ import NotFound from "../NotFound/NotFound";
 import Movies from "../Movies/Movies";
 import SavedMovies from "../SavedMovies/SavedMovies";
 import Profile from "../Profile/Profile";
+import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
+import HeaderLogged from "../Header/HeaderLogged";
+import BurgerMenuPopup from "../BurgerMenuPopup/BurgerMenuPopup";
+
+function App() {
+  const location = useLocation();  
+  const [isBurgerOpened, setIsBurgerOpened] = useState(false);
+  // console.log(isBurgerOpened);
+
+  function handleBurgerClick() {
+    setIsBurgerOpened(true);
+  }
+
+  function closeBurger() {
+    setIsBurgerOpened(false);
+  }
+ 
+  return (
+    <div className="background">
+      <div className="page">
+        {location.pathname === "/" && <Header />}
+        {(location.pathname === "/movies" ||
+          location.pathname === "/saved-movies" ||
+          location.pathname === "/profile") && <HeaderLogged isOpen={isBurgerOpened} onClose={closeBurger} handleBurgerClick={handleBurgerClick}/>}
+        <main className="main">
+          <Routes>
+            <Route exact path="/" element={<Main />} />
+            <Route path="/signup" element={<Register />} />
+            <Route path="/signin" element={<Login />} />
+            <Route path="/movies" element={<Movies isBurgerOpened={isBurgerOpened} onClose={closeBurger} handleBurgerClick={handleBurgerClick}/>} />
 
 import { checkToken } from "../../utils/auth";
 import Header from "../Header/Header";
@@ -110,6 +141,7 @@ function App() {
         {(location.pathname === "/movies" ||
           location.pathname === "/saved-movies" ||
           location.pathname === "/") && <Footer />}
+          <BurgerMenuPopup isBurgerOpened={isBurgerOpened} onClose={closeBurger} handleBurgerClick={handleBurgerClick}/>
       </div>
     </div>
   );

@@ -53,10 +53,11 @@
     align-items: center;
     color: #FFFFFF;
     margin: 146px 0 25px 70px;
+    cursor: pointer;
 }
 
 .promo__button:hover {
-    cursor: pointer;
+    opacity: .8;
 }
 
 .promo__logo {
