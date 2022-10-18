@@ -19,48 +19,16 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import HeaderLogged from "../Header/HeaderLogged";
 import BurgerMenuPopup from "../BurgerMenuPopup/BurgerMenuPopup";
-
-function App() {
-  const location = useLocation();  
-  const [isBurgerOpened, setIsBurgerOpened] = useState(false);
-  // console.log(isBurgerOpened);
-
-  function handleBurgerClick() {
-    setIsBurgerOpened(true);
-  }
-
-  function closeBurger() {
-    setIsBurgerOpened(false);
-  }
- 
-  return (
-    <div className="background">
-      <div className="page">
-        {location.pathname === "/" && <Header />}
-        {(location.pathname === "/movies" ||
-          location.pathname === "/saved-movies" ||
-          location.pathname === "/profile") && <HeaderLogged isOpen={isBurgerOpened} onClose={closeBurger} handleBurgerClick={handleBurgerClick}/>}
-        <main className="main">
-          <Routes>
-            <Route exact path="/" element={<Main />} />
-            <Route path="/signup" element={<Register />} />
-            <Route path="/signin" element={<Login />} />
-            <Route path="/movies" element={<Movies isBurgerOpened={isBurgerOpened} onClose={closeBurger} handleBurgerClick={handleBurgerClick}/>} />
-
 import { checkToken } from "../../utils/auth";
-import Header from "../Header/Header";
-import HeaderLogged from "../Header/HeaderLogged";
-import Footer from "../Footer/Footer";
 
 function App() {
+  const location = useLocation();
+  const [isBurgerOpened, setIsBurgerOpened] = useState(false);
   // const [moviesCards, setMoviesCards] = useState([]);
   const [loggedIn, setLoggedIn] = useState(false);
   const navigate = useNavigate();
   const [name, setName] = useState("");
-  const location = useLocation();
   const [searchQuery, setsearchQuery] = useState([]);
-
-  
 
   const handleInputChange = (e) => {
     setsearchQuery(e.target.value);
@@ -93,30 +61,38 @@ function App() {
     handleTokenCheck();
   };
 
-  const handleLogout = (e) => {
-    e.preventDefault();
-    localStorage.removeItem("jwt");
-    setLoggedIn(false);
-    setName("");
-    navigate("/login");
-  };
+  // const handleLogout = (e) => {
+  //   e.preventDefault();
+  //   localStorage.removeItem("jwt");
+  //   setLoggedIn(false);
+  //   setName("");
+  //   navigate("/login");
+  // };
+
+  // console.log(isBurgerOpened);
+
+  function handleBurgerClick() {
+    setIsBurgerOpened(true);
+  }
+
+  function closeBurger() {
+    setIsBurgerOpened(false);
+  }
 
   return (
     <div className="background">
       <div className="page">
-        {location.pathname === "/" && (
-          <Header onLogout={handleLogout} loggedIn={loggedIn} name={name} />
-        )}
+        {location.pathname === "/" && <Header />}
         {(location.pathname === "/movies" ||
           location.pathname === "/saved-movies" ||
           location.pathname === "/profile") && (
           <HeaderLogged
-            onLogout={handleLogout}
-            loggedIn={loggedIn}
-            name={name}
+            isOpen={isBurgerOpened}
+            onClose={closeBurger}
+            handleBurgerClick={handleBurgerClick}
           />
         )}
-        <main>
+        <main className="main">
           <Routes>
             <Route exact path="/" element={<Main />} />
             <Route
@@ -128,11 +104,15 @@ function App() {
               path="/movies"
               element={
                 <Movies
+                  isBurgerOpened={isBurgerOpened}
+                  onClose={closeBurger}
+                  handleBurgerClick={handleBurgerClick}
                   handleInputChange={handleInputChange}
                   handleFormSubmit={handleFormSubmit}
                 />
               }
             />
+
             <Route path="/saved-movies" element={<SavedMovies />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="*" element={<NotFound />} />
@@ -141,7 +121,11 @@ function App() {
         {(location.pathname === "/movies" ||
           location.pathname === "/saved-movies" ||
           location.pathname === "/") && <Footer />}
-          <BurgerMenuPopup isBurgerOpened={isBurgerOpened} onClose={closeBurger} handleBurgerClick={handleBurgerClick}/>
+        <BurgerMenuPopup
+          isBurgerOpened={isBurgerOpened}
+          onClose={closeBurger}
+          handleBurgerClick={handleBurgerClick}
+        />
       </div>
     </div>
   );

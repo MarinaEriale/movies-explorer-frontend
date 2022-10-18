@@ -45,7 +45,7 @@ function SearchForm() {
           placeholder="Фильм"
           className="searchForm__movie"
           required="required"
-          onChange={props.handleInputChange}
+          // onChange={props.handleInputChange}
         />
         <button
           type="submit"
