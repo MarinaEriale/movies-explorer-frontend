@@ -1,7 +1,7 @@
 import React from "react";
 import "./AboutMe.css";
 import photo from "../../images/photo.png";
-// import arrow from "../../images/arrow.svg";
+// giimport arrow from "../../images/arrow.svg";
 
 function AboutMe() {
   return (

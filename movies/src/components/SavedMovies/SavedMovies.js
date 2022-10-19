@@ -1,7 +1,6 @@
 import React from "react";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardListSaved from "../MoviesCardList/MoviesCardListSaved";
-import Footer from "../Footer/Footer";
 
 
 function SavedMovies () {
@@ -9,7 +8,6 @@ function SavedMovies () {
         <section className="savedMovies">
           <SearchForm />
           <MoviesCardListSaved />
-          <Footer />
         </section>
       );
 }
