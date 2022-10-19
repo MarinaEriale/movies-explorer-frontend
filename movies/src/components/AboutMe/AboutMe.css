@@ -113,6 +113,7 @@
     flex-direction: row;
     justify-content: space-between;
     text-decoration: none;
+    /* align-items: baseline; */
 }
 
 .aboutMe__sites-name {
@@ -138,7 +139,6 @@
     line-height: 60px;
     letter-spacing: -0.04em;
     text-decoration: none;
-  
 }
 
 
