@@ -1,0 +1,4 @@
+.movies__screen {
+    z-index: 1;
+    position: relative;
+}
