@@ -20,6 +20,10 @@ import Footer from "../Footer/Footer";
 import HeaderLogged from "../Header/HeaderLogged";
 import BurgerMenuPopup from "../BurgerMenuPopup/BurgerMenuPopup";
 import { checkToken } from "../../utils/auth";
+import RequireAuth from "../RequireAuth";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import api from "../../utils/Api";
+import moviesApi from "../../utils/MoviesApi";
 
 function App() {
   const location = useLocation();
@@ -27,17 +31,44 @@ function App() {
   // const [moviesCards, setMoviesCards] = useState([]);
   const [loggedIn, setLoggedIn] = useState(false);
   const navigate = useNavigate();
+  const [currentUser, setCurrentUser] = useState({});
+  const [savedMovieCards, setSavedMovieCards] = useState([]);
+  const [savedMovies, setSavedMovies] = useState([]);
   const [name, setName] = useState("");
-  const [searchQuery, setsearchQuery] = useState([]);
 
-  const handleInputChange = (e) => {
-    setsearchQuery(e.target.value);
-  };
+  React.useEffect(() => {
+    moviesApi
+      .getMoviesCards()
+      .then((foundMovies) => {
+        // console.log(foundMovies);
+        localStorage.setItem("data", JSON.stringify(foundMovies));
+      })
+      .catch((err) => console.log("Ошибка", err));
+  }, [loggedIn]);
 
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    console.log("Сабмит сработал");
-  };
+  React.useEffect(() => {
+    if (localStorage.getItem("jwt") && loggedIn) {
+      api
+      .getSavedMovies()
+      .then((movies) => {
+        setSavedMovies(movies.data);
+      })
+      .catch((err) => console.log("Ошибка", err));
+    }
+  }, [savedMovieCards]); //savedMovies
+    
+    
+
+  // console.log(savedMovies);
+
+  // const handleInputChange = (e) => {
+  //   setsearchQuery(e.target.value);
+  // };
+
+  // const handleFormSubmit = (e) => {
+  //   e.preventDefault();
+  //   console.log("Сабмит сработал");
+  // };
 
   React.useEffect(() => {
     handleTokenCheck();
@@ -61,13 +92,13 @@ function App() {
     handleTokenCheck();
   };
 
-  // const handleLogout = (e) => {
-  //   e.preventDefault();
-  //   localStorage.removeItem("jwt");
-  //   setLoggedIn(false);
-  //   setName("");
-  //   navigate("/login");
-  // };
+  const handleLogout = (e) => {
+    e.preventDefault();
+    localStorage.clear();
+    setLoggedIn(false);
+    setName("");
+    navigate("/");
+  };
 
   // console.log(isBurgerOpened);
 
@@ -79,55 +110,109 @@ function App() {
     setIsBurgerOpened(false);
   }
 
+  React.useEffect(() => {
+    if (localStorage.getItem("jwt") && loggedIn) {
+      api
+        .getUserInfo()
+        .then((userInfo) => {
+          setCurrentUser(userInfo);
+        })
+        .catch((err) => console.log("Ошибка", err));
+    }
+  }, [loggedIn]);
+
+  function handleCardSave(data) {
+    api
+      .addNewMovie(data)
+      .then((newCard) => {
+        setSavedMovieCards([newCard, ...savedMovieCards]);
+      })
+      .catch((err) => console.log("Ошибка", err));
+  }
+
+  function handleCardDelete(movie) {
+    console.log(movie);
+    console.log("Сохраненные фильмы", savedMovies);
+    const clickedMovie = savedMovies.find((item) => item.movieId === (movie.movieId || movie.id));
+    console.log("Кликнутый фильм", clickedMovie);
+    console.log("clickedMovie._id", clickedMovie._id);
+    api
+      .deleteMovie(clickedMovie._id)
+      .then(() => {
+        setSavedMovieCards(
+          savedMovies.filter((item) => item._id !== clickedMovie._id)
+        );
+      })
+      .catch((err) => console.log("Ошибка", err));
+  }
+
   return (
-    <div className="background">
-      <div className="page">
-        {location.pathname === "/" && <Header />}
-        {(location.pathname === "/movies" ||
-          location.pathname === "/saved-movies" ||
-          location.pathname === "/profile") && (
-          <HeaderLogged
-            isOpen={isBurgerOpened}
+    <CurrentUserContext.Provider value={currentUser}>
+      <div className="background">
+        <div className="page">
+          {location.pathname === "/" && <Header />}
+          {(location.pathname === "/movies" ||
+            location.pathname === "/saved-movies" ||
+            location.pathname === "/profile") && (
+            <HeaderLogged
+              isOpen={isBurgerOpened}
+              onClose={closeBurger}
+              handleBurgerClick={handleBurgerClick}
+            />
+          )}
+          <main className="main">
+            <Routes>
+              <Route exact path="/" element={<Main />} />
+              <Route
+                path="/signup"
+                element={<Register onLogin={handleLogin} />}
+              />
+              <Route path="/signin" element={<Login onLogin={handleLogin} />} />
+              <Route
+                path="/movies"
+                element={
+                  <RequireAuth loggedIn={loggedIn}>
+                    <Movies
+                      isBurgerOpened={isBurgerOpened}
+                      onClose={closeBurger}
+                      handleBurgerClick={handleBurgerClick}
+                      onCardLike={handleCardSave}
+                      onCardDislike={handleCardDelete}
+                      savedMovies={savedMovies}
+                    />
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path="/saved-movies"
+                element={
+                  <RequireAuth loggedIn={loggedIn}>
+                    <SavedMovies
+                      savedMovies={savedMovies}
+                      onCardLike={handleCardSave}
+                      onCardDislike={handleCardDelete}
+                    />
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path="/profile"
+                element={<Profile onLogout={handleLogout} />}
+              />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </main>
+          {(location.pathname === "/movies" ||
+            location.pathname === "/saved-movies" ||
+            location.pathname === "/") && <Footer />}
+          <BurgerMenuPopup
+            isBurgerOpened={isBurgerOpened}
             onClose={closeBurger}
             handleBurgerClick={handleBurgerClick}
           />
-        )}
-        <main className="main">
-          <Routes>
-            <Route exact path="/" element={<Main />} />
-            <Route
-              path="/signup"
-              element={<Register onLogin={handleLogin} />}
-            />
-            <Route path="/signin" element={<Login onLogin={handleLogin} />} />
-            <Route
-              path="/movies"
-              element={
-                <Movies
-                  isBurgerOpened={isBurgerOpened}
-                  onClose={closeBurger}
-                  handleBurgerClick={handleBurgerClick}
-                  handleInputChange={handleInputChange}
-                  handleFormSubmit={handleFormSubmit}
-                />
-              }
-            />
-
-            <Route path="/saved-movies" element={<SavedMovies />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </main>
-        {(location.pathname === "/movies" ||
-          location.pathname === "/saved-movies" ||
-          location.pathname === "/") && <Footer />}
-        <BurgerMenuPopup
-          isBurgerOpened={isBurgerOpened}
-          onClose={closeBurger}
-          handleBurgerClick={handleBurgerClick}
-        />
+        </div>
       </div>
-    </div>
+    </CurrentUserContext.Provider>
   );
 }
 

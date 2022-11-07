@@ -71,6 +71,7 @@ function Register({ onLogin }) {
             value={values.name}
             onChange={handleChange}
           />
+          {/* <span className="register__error">Что-то пошло не так...</span> */}
           <label className="register__label">E-mail</label>
           <input
             id="email"

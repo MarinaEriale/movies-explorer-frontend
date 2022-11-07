@@ -3,17 +3,21 @@ function onResponce(res) {
 }
 
 export class Api {
-  constructor({ url }) {
+  constructor({ url, headers }) {
     this._url = url;
+    this._headers = headers;
   }
 
   getMoviesCards() {
-    return fetch(`${this._url}`).then(onResponce);
+    return fetch(this._url).then(onResponce);
   }
 }
 
 const moviesApi = new Api({
   url: "https://api.nomoreparties.co/beatfilm-movies",
+  headers:{
+    "Content-Type": "application/json",
+  },
 });
 
 export default moviesApi;

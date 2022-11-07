@@ -39,6 +39,10 @@
     color: #000000;
     margin: 14px 0 0 12px;
     padding: 0;
+    text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 206px;
 
 }
 
