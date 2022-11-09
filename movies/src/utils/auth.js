@@ -1,5 +1,5 @@
-// export const BASE_URL ='https://api.marina.movies.nomoredomains.sbs';
-export const BASE_URL ='http://localhost:3000';
+export const BASE_URL ='https://api.marina.movies.nomoredomains.sbs';
+// export const BASE_URL ='http://localhost:3000';
 
 function onResponce(res) {
   return res.ok ? res.json() : Promise.reject(`Ошибка: ${res}`);
