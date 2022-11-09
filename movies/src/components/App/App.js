@@ -146,6 +146,15 @@ function App() {
       .catch((err) => console.log("Ошибка", err));
   }
 
+  function handleProfileUpdate(data) {
+    api
+    .editUserInfo(data)
+    .then((userData) => {
+      setCurrentUser(userData);
+    })
+    .catch((err) => console.log("Ошибка", err));
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="background">
@@ -197,7 +206,7 @@ function App() {
               />
               <Route
                 path="/profile"
-                element={<Profile onLogout={handleLogout} />}
+                element={<Profile onLogout={handleLogout} handleProfileUpdate={handleProfileUpdate} />}
               />
               <Route path="*" element={<NotFound />} />
             </Routes>

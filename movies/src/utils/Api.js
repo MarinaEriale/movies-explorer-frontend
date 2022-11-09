@@ -36,17 +36,17 @@ export class Api {
   //       .then(onResponce)
   // }
 
-  // editUserInfo(data) {
-  //   return fetch (`${this._url}/users/me`, {
-  //     method: 'PATCH',
-  //     headers: this._headers(),
-  //     body: JSON.stringify({
-  //       name: data.name,
-  //       about: data.about
-  //     }),
-  //    })
-  //       .then(onResponce)
-  // }
+  editUserInfo(data) {
+    return fetch (`${this._url}/users/me`, {
+      method: 'PATCH',
+      headers: this._headers(),
+      body: JSON.stringify({
+        name: data.name,
+        email: data.email
+      }),
+     })
+        .then(onResponce)
+  }
 
   addNewMovie(data) {
     return fetch(`${this._url}/movies` , {
@@ -77,8 +77,8 @@ export class Api {
 }
 
 const api = new Api({
-  // url: "http://localhost:3000",
-  url:'https://api.marina.movies.nomoredomains.sbs',
+  url: "http://localhost:3000",
+  // url:'https://api.marina.movies.nomoredomains.sbs',
 });
 
 export default api;

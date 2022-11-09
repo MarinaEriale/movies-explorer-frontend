@@ -86,12 +86,12 @@ function Movies(props) {
   }, [searchQuery, checked]);
 
   const recentCheckboxState = JSON.parse(localStorage.getItem("checked"));
-  console.log(recentCheckboxState);  
+  // console.log(recentCheckboxState);  
 
   React.useEffect(() => {
     if (oldSearch && recentCheckboxState) {
       
-      console.log("Текущий стейт чекбокса", recentCheckboxState);
+      // console.log("Текущий стейт чекбокса", recentCheckboxState);
       setChecked(recentCheckboxState);
     }
   }, [oldSearch]);
@@ -101,7 +101,7 @@ function Movies(props) {
       const recentMovies = JSON.parse(localStorage.getItem("keyWordMovies"));
       const recentKeyWord = JSON.parse(localStorage.getItem("searchQuery"));
       setValue(recentKeyWord.movieName);
-      console.log(value);
+      // console.log(value);
 
       setMovieCards(recentMovies);
     }

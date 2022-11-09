@@ -71,6 +71,11 @@
   cursor: pointer;
 }
 
+.register__enter-button_disabled {
+  background: #F8F8F8;
+  color: #C2C2C2;
+}
+
 .register__login {
   font-family: "Inter", "Arial", sans-serif;
   font-style: normal;
