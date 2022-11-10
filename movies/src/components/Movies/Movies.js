@@ -11,7 +11,7 @@ function Movies(props) {
   const [checked, setChecked] = useState(false);
   const [value, setValue] = useState([]);
   const [oldSearch, setOldSearch] = useState(false);
-  const [oldCheckbox, setOldCheckbox] = useState(false);
+  // const [oldCheckbox, setOldCheckbox] = useState(false);
 
   React.useEffect(() => {
     if (JSON.parse(localStorage.getItem("keyWordMovies"))) {
@@ -19,7 +19,9 @@ function Movies(props) {
     }
   }, []);
 
-  console.log(!oldSearch);
+  // console.log(!oldSearch);
+
+  console.log(checked);
 
   const windowInnerWidth = document.documentElement.clientWidth;
 
@@ -66,7 +68,7 @@ function Movies(props) {
   React.useEffect(() => {
     if (searchQuery.length !== 0 && checked) {
       setIsLoading(false);
-      localStorage.setItem("searchQuery", JSON.stringify(searchQuery));
+      // localStorage.setItem("searchQuery", JSON.stringify(searchQuery));
       localStorage.setItem("checked", JSON.stringify(checked));
 
       const cardsArray = JSON.parse(localStorage.getItem("data"));
@@ -85,16 +87,17 @@ function Movies(props) {
     }
   }, [searchQuery, checked]);
 
-  const recentCheckboxState = JSON.parse(localStorage.getItem("checked"));
+  
   // console.log(recentCheckboxState);  
 
-  React.useEffect(() => {
-    if (oldSearch && recentCheckboxState) {
+  // React.useEffect(() => {
+  //   const recentCheckboxState = JSON.parse(localStorage.getItem("checked"));
+  //   if (oldSearch && recentCheckboxState) {
       
-      // console.log("Текущий стейт чекбокса", recentCheckboxState);
-      setChecked(recentCheckboxState);
-    }
-  }, [oldSearch]);
+  //     // console.log("Текущий стейт чекбокса", recentCheckboxState);
+  //     setChecked(recentCheckboxState);
+  //   }
+  // }, [oldSearch]);
 
   React.useEffect(() => {
     if (oldSearch) {
