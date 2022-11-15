@@ -38,6 +38,24 @@ function Profile(props) {
     }
   }, [isValid, notEditMode]);
 
+  const profileTextNameForName = `profile__input ${
+    errors.name ? "profile__input_mistaken" : ""
+  }`;
+
+  const profileTextNameForEmail = `profile__input ${
+    errors.email ? "profile__input_mistaken" : ""
+  }`;
+
+  // function handleInform() {
+  //   if (!notEditMode && props.editSuccess) {
+  //     setProfileSuccessName("profile__succsess profile__success_active");
+  //     setTimeout(() => {
+  //       setProfileSuccessName("profile__succsess");
+  //       setNotEditMode(true);
+  //     }, 2000);
+  //   }
+  // }
+
   return (
     <section className="profile">
       <form
@@ -52,31 +70,61 @@ function Profile(props) {
             </label>
             <input
               {...register("name", {
-                required: true,
+                required: "Обязательно укажите имя",
                 disabled: notEditMode ? true : false,
-                pattern: /^([A-Za-zА-Яа-яЁё\s-]){2,30}$/,
-                minlength: 2,
-                maxlength: 30,
+                pattern: {
+                  value: /^([A-Za-zА-Яа-яЁё\s-]){2,30}$/,
+                  message: "Используйте кириллицу, латиницу и пробел",
+                },
+                minLength: {
+                  value: 2,
+                  message: "Имя должно быть не короче 2 символов",
+                },
+                maxLength: {
+                  value: 30,
+                  message: "Имя не должно быть длиннее 30 символов",
+                },
+                validate: (value) =>
+                  value !== currentUser.name ||
+                  "Новое имя должно отличаться от текущего",
               })}
-              className="profile__input"
+              className={profileTextNameForName}
               defaultValue={currentUser.name}
             />
           </li>
-
+          <div className="profile__error">
+            {errors?.name && (
+              <p className="profile__error-text">
+                {errors?.name?.message || "Ошибка введенных данных"}
+              </p>
+            )}
+          </div>
           <li className="profile__info">
             <label className="profile__text">E-mail</label>
-
             <input
               {...register("email", {
-                required: true,
+                required: "Обязательно укажите e-mail",
                 disabled: notEditMode ? true : false,
-                pattern:
-                  /^(?!.{65})([abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0-9_\-.+]+)@([a-z0-9]+)((([.]?|[_-]{0,2})[a-z0-9]+)*)\.([a-z]{2,})$/,
+                pattern: {
+                  value:
+                    /^(?!.{65})([abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0-9_\-.+]+)@([a-z0-9]+)((([.]?|[_-]{0,2})[a-z0-9]+)*)\.([a-z]{2,})$/,
+                  message: "Введите e-mail в формате example@mail.com",
+                },
+                validate: (value) =>
+                  value !== currentUser.email ||
+                  "Новый email должен отличаться от текущего",
               })}
-              className="profile__input"
+              className={profileTextNameForEmail}
               defaultValue={currentUser.email}
             />
           </li>
+          <div className="profile__error">
+            {errors?.email && (
+              <p className="profile__error-text">
+                {errors?.email?.message || "Ошибка введенных данных"}
+              </p>
+            )}
+          </div>
         </ul>
         <button
           type="button"
@@ -95,6 +143,9 @@ function Profile(props) {
         <button type="submit" className={saveButtonName} disabled={!isValid}>
           <p className="profile__save-text">Сохранить</p>
         </button>
+        {props.editSuccess && (
+          <p className="profile__success">Данные успешно сохранены</p>
+        )}
       </form>
     </section>
   );

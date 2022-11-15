@@ -17,7 +17,7 @@ function Register({ onLogin }) {
     formState: { errors, isValid },
     handleSubmit,
   } = useForm({
-    mode: "onChange",
+    mode: "onBlur",
   });
 
   const navigate = useNavigate();
@@ -57,6 +57,18 @@ function Register({ onLogin }) {
     !isValid ? "register__enter-button_disabled" : ""
   }`;
 
+  const registerTextNameForName = `register__text ${
+    errors.name ? "register__text_mistaken" : ""
+  }`;
+
+  const registerTextNameForEmail = `register__text ${
+    errors.email ? "register__text_mistaken" : ""
+  }`;
+
+  const registerTextNameForPassword = `register__text ${
+    errors.password ? "register__text_mistaken" : ""
+  }`;
+
   return (
     <section className="register">
       <div className="register__container">
@@ -75,47 +87,76 @@ function Register({ onLogin }) {
           <label className="register__label">Имя</label>
           <input
             {...register("name", {
-              required: true,
-              pattern: /^([A-Za-zА-Яа-яЁё\s-]){2,30}$/,
-              minlength: 2,
-              maxlength: 30,
+              required: "Обязательно укажите имя",
+              pattern: {
+                value: /^([A-Za-zА-Яа-яЁё\s-]){2,30}$/,
+                message: "Используйте кириллицу, латиницу и пробел",
+              },
+              minLength: {
+                value: 2,
+                message: "Имя должно быть не короче 2 символов",
+              },
+              maxLength: {
+                value: 30,
+                message: "Имя не должно быть длиннее 30 символов",
+              },
             })}
             id="name"
             type="text"
             placeholder="Имя"
-            className="register__text"
-            // value={values.name}
-            // onChange={handleChange}
+            className={registerTextNameForName}
           />
+          <div className="register__error">
+            {errors?.name && (
+              <p className="register__error-text">
+                {errors?.name?.message || "Ошибка введенных данных"}
+              </p>
+            )}
+          </div>
           <label className="register__label">E-mail</label>
           <input
             {...register("email", {
-              required: true,
-              pattern:
-                /^(?!.{65})([abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0-9_\-.+]+)@([a-z0-9]+)((([.]?|[_-]{0,2})[a-z0-9]+)*)\.([a-z]{2,})$/,
+              required: "Обязательно укажите e-mail",
+              pattern: {
+                value:
+                  /^(?!.{65})([abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0-9_\-.+]+)@([a-z0-9]+)((([.]?|[_-]{0,2})[a-z0-9]+)*)\.([a-z]{2,})$/,
+                message: "Введите e-mail в формате example@mail.com",
+              },
             })}
             id="email"
             type="email"
             placeholder="E-mail"
-            className="register__text"
-
-            // value={values.email}
-            // onChange={handleChange}
+            className={registerTextNameForEmail}
           />
+          <div className="register__error">
+            {errors?.email && (
+              <p className="register__error-text">
+                {errors?.email?.message || "Ошибка введенных данных"}
+              </p>
+            )}
+          </div>
           <label className="register__label">Пароль</label>
           <input
             {...register("password", {
-              required: true,
+              required: "Обязательно укажите пароль",
             })}
             id="password"
             type="password"
             placeholder="Пароль"
-            className="register__text"
-            required="required"
-            // value={values.password}
-            // onChange={handleChange}
+            className={registerTextNameForPassword}
           />
-          <button type="submit" className={registerButtonName} disabled={!isValid}>
+          <div className="register__error">
+            {errors?.password && (
+              <p className="register__error-text">
+                {errors?.password?.message || "Ошибка введенных данных"}
+              </p>
+            )}
+          </div>
+          <button
+            type="submit"
+            className={registerButtonName}
+            disabled={!isValid}
+          >
             Зарегистрироваться
           </button>
           <p className="register__login">

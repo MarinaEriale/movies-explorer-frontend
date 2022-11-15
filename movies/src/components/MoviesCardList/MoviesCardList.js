@@ -128,7 +128,7 @@ function MoviesCardList(props) {
         {moviesToMap.map((item) => {
           return (
             <MovieCard
-              key={item.id || props.movieId}
+              key={item.id}
               data={item}
               onCardLike={props.onCardLike}
               onCardDislike={props.onCardDislike}

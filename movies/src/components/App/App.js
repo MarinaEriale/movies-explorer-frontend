@@ -34,30 +34,34 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [savedMovieCards, setSavedMovieCards] = useState([]);
   const [savedMovies, setSavedMovies] = useState([]);
-  const [name, setName] = useState("");
+ const [editSuccess, setEditSuccess] = useState(false);
 
   React.useEffect(() => {
-    moviesApi
-      .getMoviesCards()
-      .then((foundMovies) => {
-        // console.log(foundMovies);
-        localStorage.setItem("data", JSON.stringify(foundMovies));
-      })
-      .catch((err) => console.log("Ошибка", err));
+    if (!JSON.parse(localStorage.getItem("data"))) {
+      moviesApi
+        .getMoviesCards()
+        .then((foundMovies) => {
+          // console.log(foundMovies);
+          localStorage.setItem("data", JSON.stringify(foundMovies));
+        })
+        .catch((err) => console.log("Ошибка", err));
+    }
   }, [loggedIn]);
 
   React.useEffect(() => {
     if (localStorage.getItem("jwt") && loggedIn) {
       api
-      .getSavedMovies()
-      .then((movies) => {
-        setSavedMovies(movies.data);
-      })
-      .catch((err) => console.log("Ошибка", err));
+        .getSavedMovies()
+        .then((movies) => {
+          const ownMovies = movies.data.filter((item) => item.owner === currentUser._id)
+         
+          console.log(ownMovies)
+          setSavedMovies(ownMovies);
+          localStorage.setItem("savedMovies", JSON.stringify(ownMovies));
+        })
+        .catch((err) => console.log("Ошибка", err));
     }
-  }, [savedMovieCards]); //savedMovies
-    
-    
+  }, [savedMovieCards, loggedIn, currentUser._id]); //savedMovies
 
   // console.log(savedMovies);
 
@@ -80,7 +84,6 @@ function App() {
       checkToken(jwt).then((res) => {
         if (res) {
           setLoggedIn(true);
-          setName(res.name);
           navigate("/movies");
         }
       });
@@ -96,7 +99,6 @@ function App() {
     e.preventDefault();
     localStorage.clear();
     setLoggedIn(false);
-    setName("");
     navigate("/");
   };
 
@@ -133,7 +135,9 @@ function App() {
   function handleCardDelete(movie) {
     console.log(movie);
     console.log("Сохраненные фильмы", savedMovies);
-    const clickedMovie = savedMovies.find((item) => item.movieId === (movie.movieId || movie.id));
+    const clickedMovie = savedMovies.find(
+      (item) => item.movieId === (movie.movieId || movie.id)
+    );
     console.log("Кликнутый фильм", clickedMovie);
     console.log("clickedMovie._id", clickedMovie._id);
     api
@@ -148,18 +152,19 @@ function App() {
 
   function handleProfileUpdate(data) {
     api
-    .editUserInfo(data)
-    .then((userData) => {
-      setCurrentUser(userData);
-    })
-    .catch((err) => console.log("Ошибка", err));
+      .editUserInfo(data)
+      .then((userData) => {
+        setCurrentUser(userData);
+        setEditSuccess(true);
+      })
+      .catch((err) => console.log("Ошибка", err));
   }
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="background">
         <div className="page">
-          {location.pathname === "/" && <Header />}
+          {loggedIn ? location.pathname === "/" && <HeaderLogged /> : location.pathname === "/" && <Header />}
           {(location.pathname === "/movies" ||
             location.pathname === "/saved-movies" ||
             location.pathname === "/profile") && (
@@ -206,7 +211,13 @@ function App() {
               />
               <Route
                 path="/profile"
-                element={<Profile onLogout={handleLogout} handleProfileUpdate={handleProfileUpdate} />}
+                element={
+                  <Profile
+                    onLogout={handleLogout}
+                    handleProfileUpdate={handleProfileUpdate}
+                    editSuccess={editSuccess}
+                  />
+                }
               />
               <Route path="*" element={<NotFound />} />
             </Routes>

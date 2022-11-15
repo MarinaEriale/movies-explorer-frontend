@@ -66,18 +66,53 @@
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.09);
     border-radius: 50px;
     cursor: pointer;
-    padding: 0;
+    padding: 0;    
 }
 
-.movieCard__like-button_dislike {
+.movieCard__like-button:hover {
+    background: transparent;
+    box-shadow: none;
+}
+
+.movieCard__green-point {
+    width: 14px;
+    height: 14px;    
+    border: none;
+    background: #2BE080;
+    border-radius: 50px;
+    
+    margin: 0;
+    padding: 1px 1px 1px 1px;
+    opacity: 0;
+}
+
+.movieCard__green-point_dislike {
+    opacity: 1;
+}
+
+.movieCard__green-point:hover {
+    background: transparent;
+}
+
+.movieCard__cross {
     box-shadow: none;
     font-size: 8px;
     font-family: 'Inter', 'Arial', sans-serif;
     font-style: normal;
-    font-weight: 500;
-    
+    font-weight: 500;    
     background-color: transparent;
+    z-index: 2;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    padding: 0;
+    opacity: 0;
 }
+
+.movieCard__cross:hover {
+    opacity: 1;
+}
+
+
 
 @media screen and (max-width: 800px) {
     .movieCard__image {

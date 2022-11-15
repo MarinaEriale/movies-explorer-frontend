@@ -25,33 +25,41 @@ function SavedMovies(props) {
 
   React.useEffect(() => {
     if (searchQuery.length !== 0 && !checked) {
-      setIsLoading(false);
-      // console.log("Новый поисковый запрос", searchQuery);
+      setTimeout(() => {
+        setIsLoading(false);
 
-      const keyWord = searchQuery.movieName.toLowerCase();
+        const cardsArray = JSON.parse(localStorage.getItem("savedMovies"));
+        const keyWord = searchQuery.movieName.toLowerCase();
 
-      const keyWordMovies = props.savedMovies.filter((item) =>
-        item.nameRU.toLowerCase().includes(keyWord)
-      );
+        const keyWordMovies = cardsArray.filter((item) =>
+          item.nameRU.toLowerCase().includes(keyWord)
+        );
 
-      setMovieCards(keyWordMovies);
-
-      // localStorage.setItem("keyWordMovies", JSON.stringify(keyWordMovies));
-    } else if (searchQuery.length !== 0 && checked) {
-      setIsLoading(false);
-
-      const keyWord = searchQuery.movieName.toLowerCase();
-      const keyWordMovies = props.savedMovies.filter((item) =>
-        item.nameRU.toLowerCase().includes(keyWord)
-      );
-
-      const shortKeyWordMovies = keyWordMovies.filter(
-        (item) => item.duration <= 40
-      );
-
-      setMovieCards(shortKeyWordMovies);
+        setMovieCards(keyWordMovies);
+      }, 200);
     }
-  }, [searchQuery, checked, props.savedCards]);
+  }, [searchQuery, checked]);
+
+  React.useEffect(() => {
+    if (checked) {
+      setTimeout(() => {
+        setIsLoading(false);
+
+        const cardsArray = JSON.parse(localStorage.getItem("savedMovies"));
+
+        // const keyWord = searchQuery.movieName.toLowerCase();
+        // const keyWordMovies = cardsArray.filter((item) =>
+        //   item.nameRU.toLowerCase().includes(keyWord)
+        // );
+
+        const shortKeyWordMovies = cardsArray.filter(
+          (item) => item.duration <= 40
+        );
+
+        setMovieCards(shortKeyWordMovies);
+      });
+    }
+  }, [checked]);
 
   return (
     <section className="savedMovies">

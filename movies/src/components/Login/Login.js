@@ -47,6 +47,15 @@ function Login({ onLogin }) {
     !isValid ? "login__enter-button_disabled" : ""
   }`;
 
+  const loginTextNameForEmail = `login__text ${
+    errors.email ? "login__text_mistaken" : ""
+  }`;
+
+  const loginTextNameForPassword = `login__text ${
+    errors.password ? "login__text_mistaken" : ""
+  }`;
+  
+
   return (
     <section className="login">
       <div className="login__container">
@@ -67,27 +76,44 @@ function Login({ onLogin }) {
           </label>
           <input
             {...register("email", {
-              required: true,
-              pattern:
-                /^(?!.{65})([abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0-9_\-.+]+)@([a-z0-9]+)((([.]?|[_-]{0,2})[a-z0-9]+)*)\.([a-z]{2,})$/,
+              required: "Обязательно укажите e-mail",
+              pattern: {
+                value:
+                  /^(?!.{65})([abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0-9_\-.+]+)@([a-z0-9]+)((([.]?|[_-]{0,2})[a-z0-9]+)*)\.([a-z]{2,})$/,
+                message: "Введите e-mail в формате example@mail.com",
+              },
             })}
             id="email"
             type="email"
             placeholder="E-mail"
-            className="login__text"
+            className={loginTextNameForEmail}
           />
+          <div className="login__error">
+            {errors?.email && (
+              <p className="login__error-text">
+                {errors?.email?.message || "Ошибка введенных данных"}
+              </p>
+            )}
+          </div>
           <label htmlFor="password" className="login__label">
             Пароль
           </label>
           <input
             {...register("password", {
-              required: true,
+              required: "Обязательно укажите пароль",
             })}
             id="password"
             type="password"
             placeholder="Пароль"
-            className="login__text"
+            className={loginTextNameForPassword}
           />
+          <div className="login__error">
+            {errors?.password && (
+              <p className="login__error-text">
+                {errors?.password?.message || "Ошибка введенных данных"}
+              </p>
+            )}
+          </div>
           <button type="submit" className={loginButtonName} disabled={!isValid}>
             Войти
           </button>

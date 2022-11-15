@@ -1,24 +1,30 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import "./MoviesCard.css";
-import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import like from "../../images/like.svg";
 
 function MovieCard(props) {
   const location = useLocation();
   const [isLiked, setIsLiked] = useState(false);
 
-  // console.log("MovieId карточки", props.data.id);
+  // console.log("MovieId карточки", props.data.movieId || props.data.id);
   // console.log("Массив сохраненных фильмов", props.savedMovies)
   // console.log(props.savedMovies.find((item) => item.MovieId === props.data.id ));
 
   React.useEffect(() => {
-    if (location.pathname === "/saved-movies") {
-      setIsLiked(true);
-      // console.log("Это страница сохраненных фильмов, true", isLiked);
-    }
-  }, []);
+    const savedCards = JSON.parse(localStorage.getItem("savedMovies"));
+    // console.log(savedCards);
 
-  const currentUser = React.useContext(CurrentUserContext);
+    const likedCard = savedCards.find(
+      (item) => item.movieId === (props.data.movieId || props.data.id)
+    );
+    // console.log("Лайкнутая карточка", likedCard);
+    likedCard ? setIsLiked(true) : setIsLiked(false);
+  }, [props.data.id, props.data.movieId]);
+
+  // console.log(isLiked);
+
+  // const currentUser = React.useContext(CurrentUserContext);
 
   // React.useEffect(() => {
   //   if (props.savedMovies.find((item) => item.MovieId === props.data.movieId)) {
@@ -39,11 +45,17 @@ function MovieCard(props) {
     }
   }
 
-  const likeButtonName = `movieCard__like-button ${
-    isLiked ? "movieCard__like-button_dislike" : ""
+  const greenPointName = `movieCard__green-point ${
+    isLiked ? "movieCard__green-point_dislike" : ""
   }`;
 
-  const likeButtonText = isLiked ? "✖" : "";
+  // const likeButtonText = isLiked ? "✖" : "";
+
+  function calculateDuration() {
+    const hours = Math.floor(props.data.duration / 60);
+    const minutes = props.data.duration % 60;
+    return hours + "ч" + minutes + "м";
+  }
 
   return (
     <div className="movieCard">
@@ -67,15 +79,21 @@ function MovieCard(props) {
       <div className="movieCard__info">
         <div className="movieCard__text-container">
           <h2 className="movieCard__text">{props.data.nameRU}</h2>
-          <p className="movieCard__duration">{props.data.duration}</p>
+          <p className="movieCard__duration">
+            {calculateDuration(props.data.duration)}
+          </p>
         </div>
         <div className="movieCard__like">
           <button
             type="button"
-            className={likeButtonName}
+            // className={likeButtonName}
+            className="movieCard__like-button"
             onClick={handleLikeClick}
           >
-            {likeButtonText}
+            {/* {likeButtonText} */}
+            <div className={greenPointName}>
+              <p className="movieCard__cross">✖</p>
+            </div>
           </button>
         </div>
       </div>

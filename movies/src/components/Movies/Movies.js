@@ -19,6 +19,12 @@ function Movies(props) {
     }
   }, []);
 
+  React.useEffect(() => {
+    if (oldSearch) {
+      setChecked(JSON.parse(localStorage.getItem("checked")));
+    }
+  }, [oldSearch]);
+
   // console.log(!oldSearch);
 
   console.log(checked);
@@ -46,54 +52,60 @@ function Movies(props) {
 
   React.useEffect(() => {
     if (searchQuery.length !== 0 && !checked) {
-      setIsLoading(false);
-      localStorage.setItem("searchQuery", JSON.stringify(searchQuery));
-      localStorage.setItem("checked", JSON.stringify(checked));
+      setTimeout(() => {
+        setIsLoading(false);
+        localStorage.setItem("searchQuery", JSON.stringify(searchQuery));
+        localStorage.setItem("checked", false);
 
-      // console.log("Новый поисковый запрос", searchQuery);
-      const cardsArray = JSON.parse(localStorage.getItem("data"));
+        // console.log("Новый поисковый запрос", searchQuery);
+        const cardsArray = JSON.parse(localStorage.getItem("data"));
 
-      const keyWord = searchQuery.movieName.toLowerCase();
+        const keyWord = searchQuery.movieName.toLowerCase();
 
-      const keyWordMovies = cardsArray.filter((item) =>
-        item.nameRU.toLowerCase().includes(keyWord)
-      );
+        const keyWordMovies = cardsArray.filter((item) =>
+          item.nameRU.toLowerCase().includes(keyWord)
+        );
 
-      setMovieCards(keyWordMovies);
+        setMovieCards(keyWordMovies);
 
-      localStorage.setItem("keyWordMovies", JSON.stringify(keyWordMovies));
+        localStorage.setItem("keyWordMovies", JSON.stringify(keyWordMovies));
+      }, 200);
     }
   }, [searchQuery, checked]);
 
   React.useEffect(() => {
     if (searchQuery.length !== 0 && checked) {
-      setIsLoading(false);
-      // localStorage.setItem("searchQuery", JSON.stringify(searchQuery));
-      localStorage.setItem("checked", JSON.stringify(checked));
+      setTimeout(() => {
+        setIsLoading(false);
+        // localStorage.setItem("searchQuery", JSON.stringify(searchQuery));
+        localStorage.setItem("checked", true);
 
-      const cardsArray = JSON.parse(localStorage.getItem("data"));
+        const cardsArray = JSON.parse(localStorage.getItem("data"));
 
-      const keyWord = searchQuery.movieName.toLowerCase();
-      const keyWordMovies = cardsArray.filter((item) =>
-        item.nameRU.toLowerCase().includes(keyWord)
-      );
+        const keyWord = searchQuery.movieName.toLowerCase();
+        const keyWordMovies = cardsArray.filter((item) =>
+          item.nameRU.toLowerCase().includes(keyWord)
+        );
 
-      const shortKeyWordMovies = keyWordMovies.filter(
-        (item) => item.duration <= 40
-      );
+        const shortKeyWordMovies = keyWordMovies.filter(
+          (item) => item.duration <= 40
+        );
 
-      setMovieCards(shortKeyWordMovies);
-      localStorage.setItem("keyWordMovies", JSON.stringify(shortKeyWordMovies));
+        setMovieCards(shortKeyWordMovies);
+        localStorage.setItem(
+          "keyWordMovies",
+          JSON.stringify(shortKeyWordMovies)
+        );
+      }, 200);
     }
   }, [searchQuery, checked]);
 
-  
-  // console.log(recentCheckboxState);  
+  // console.log(recentCheckboxState);
 
   // React.useEffect(() => {
   //   const recentCheckboxState = JSON.parse(localStorage.getItem("checked"));
   //   if (oldSearch && recentCheckboxState) {
-      
+
   //     // console.log("Текущий стейт чекбокса", recentCheckboxState);
   //     setChecked(recentCheckboxState);
   //   }
@@ -118,6 +130,7 @@ function Movies(props) {
         handleFormSubmit={handleFormSubmit}
         handleChange={handleChange}
         value={value}
+        checked={checked}
       />
       {isLoading ? (
         <Preloader />

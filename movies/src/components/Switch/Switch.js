@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Switch.css";
 
 const Switch = (props) => {
+
+  // const [checked, setChecked] = useState(props.checked)
+
   return (
     <label className="switch__label">
       <input
