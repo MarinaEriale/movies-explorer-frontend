@@ -12,7 +12,13 @@ function SavedMovies(props) {
 
   console.log(props.savedMovies);
 
+  React.useEffect(() => {
+    setMovieCards(props.savedMovies);
+  }, [props.savedMovies])
+
   const windowInnerWidth = document.documentElement.clientWidth;
+
+  console.log("Фильмы из стейта", movieCards);
 
   function handleChange() {
     setChecked(!checked);
@@ -36,6 +42,7 @@ function SavedMovies(props) {
         );
 
         setMovieCards(keyWordMovies);
+        console.log("Фильмы после поиска", keyWordMovies);
       }, 200);
     }
   }, [searchQuery, checked]);

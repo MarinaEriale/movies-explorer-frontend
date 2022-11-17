@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import "./MoviesCard.css";
-import like from "../../images/like.svg";
 
 function MovieCard(props) {
   const location = useLocation();

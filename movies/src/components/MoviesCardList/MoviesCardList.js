@@ -20,10 +20,11 @@ function MoviesCardList(props) {
   const LITTLE_LINE = 1;
 
   const windowWidth = props.windowInnerWidth;
-  // console.log(props);
+  console.log(props.savedMovies);
 
   React.useEffect(() => {
     if (location.pathname === "/saved-movies") {
+      console.log(props.savedMovies);
       const ownMovies = props.savedMovies.filter(
         (item) => item.owner === currentUser._id
       );

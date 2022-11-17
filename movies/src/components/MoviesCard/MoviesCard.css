@@ -7,6 +7,10 @@
   position: relative;
 }
 
+.movieCard:hover .movieCard__cross  {
+  opacity: 1;
+}
+
 .movieCard__image {
   width: 270px;
   height: 151px;
@@ -101,9 +105,7 @@
   opacity: 0;
 }
 
-.movieCard__cross:hover {
-  opacity: 1;
-}
+
 
 @media screen and (max-width: 800px) {
   .movieCard__image {

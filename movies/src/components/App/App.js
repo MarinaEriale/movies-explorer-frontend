@@ -83,17 +83,7 @@ function App() {
             navigate("/movies");
           }
         })
-        .catch((err) => {
-          if (err.status === 401) {
-            localStorage.clear();
-            setLoggedIn(false);
-            navigate("/");
-          } else {
-            localStorage.clear();
-            setLoggedIn(false);
-            navigate("/");
-          }
-        });
+        .catch((err) => console.log("Ошибка", err));
     }
   };
 
@@ -141,26 +131,13 @@ function App() {
               .then((newCard) => {
                 setSavedMovieCards([newCard, ...savedMovieCards]);
               })
-              .catch((err) => {
-                if (err === '401') {
-                  localStorage.clear();
-                  setLoggedIn(false);
-                  navigate("/");
-                } else {
-                  localStorage.clear();
-                  setLoggedIn(false);
-                  navigate("/");
-                }
-              });
+              .catch((err) => console.log("Ошибка", err));
           }
         })
         .catch((err) => {
           console.log(err);
-          if (err === '401') {
-            localStorage.clear();
-            setLoggedIn(false);
-            navigate("/");
-          } else {
+          if (err === "Ошибка: 401") {
+            console.log ("Проверка работает")
             localStorage.clear();
             setLoggedIn(false);
             navigate("/");
@@ -201,9 +178,11 @@ function App() {
     api
       .deleteMovie(clickedMovie._id)
       .then(() => {
+        // console.log("Мы пришли в апи удаления")
         setSavedMovieCards(
           savedMovies.filter((item) => item._id !== clickedMovie._id)
         );
+        // console.log("Мы установили новый стейт карточек", savedMovies)
       })
       .catch((err) => console.log("Ошибка", err));
   }
