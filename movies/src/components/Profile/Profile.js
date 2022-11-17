@@ -7,6 +7,9 @@ function Profile(props) {
   const currentUser = React.useContext(CurrentUserContext);
   const [notEditMode, setNotEditMode] = useState(true);
   const [saveButtonName, setSaveButtonName] = useState("");
+  const [name, setName] = useState(currentUser.name);
+  const [email, setEmail] = useState(currentUser.email);
+  const [isSavedButtonActive, setIsSavedButtonActive] = useState(false);
 
   function handleEditClick() {
     setNotEditMode(false);
@@ -20,6 +23,19 @@ function Profile(props) {
     mode: "onChange",
   });
 
+  console.log(isValid);
+  console.log(errors);
+
+  console.log(saveButtonName);
+
+  function handleInputChangeName(e) {
+    setName(e.target.value);
+  }
+
+  function handleInputChangeEmail(e) {
+    setEmail(e.target.value);
+  }
+
   const editButtonName = `profile__edit ${
     !notEditMode ? "profile__edit_disabled" : ""
   }`;
@@ -31,12 +47,19 @@ function Profile(props) {
   React.useEffect(() => {
     if (notEditMode) {
       setSaveButtonName("profile__save profile__save_hidden");
+      setIsSavedButtonActive(false);
     } else if (!notEditMode && !isValid) {
       setSaveButtonName("profile__save profile__save_disabled");
-    } else if (!notEditMode && isValid) {
-      setSaveButtonName("profile__save");
+      setIsSavedButtonActive(false);
+    } else if (!notEditMode && isValid && name === currentUser.name && email === currentUser.email) {
+      setSaveButtonName("profile__save profile__save_disabled");
+      setIsSavedButtonActive(false);
     }
-  }, [isValid, notEditMode]);
+    else if (!notEditMode && isValid && (name !== currentUser.name || email !== currentUser.email)) {
+      setSaveButtonName("profile__save");
+      setIsSavedButtonActive(true);
+    }
+  }, [currentUser.email, currentUser.name, email, isValid, name, notEditMode]);
 
   const profileTextNameForName = `profile__input ${
     errors.name ? "profile__input_mistaken" : ""
@@ -84,9 +107,9 @@ function Profile(props) {
                   value: 30,
                   message: "Имя не должно быть длиннее 30 символов",
                 },
-                validate: (value) =>
-                  value !== currentUser.name ||
-                  "Новое имя должно отличаться от текущего",
+                onChange: (e) => {
+                  handleInputChangeName(e);
+                },
               })}
               className={profileTextNameForName}
               defaultValue={currentUser.name}
@@ -110,9 +133,9 @@ function Profile(props) {
                     /^(?!.{65})([abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0-9_\-.+]+)@([a-z0-9]+)((([.]?|[_-]{0,2})[a-z0-9]+)*)\.([a-z]{2,})$/,
                   message: "Введите e-mail в формате example@mail.com",
                 },
-                validate: (value) =>
-                  value !== currentUser.email ||
-                  "Новый email должен отличаться от текущего",
+                onChange: (e) => {
+                  handleInputChangeEmail(e);
+                },
               })}
               className={profileTextNameForEmail}
               defaultValue={currentUser.email}
@@ -140,7 +163,7 @@ function Profile(props) {
         >
           Выйти из аккаунта
         </button>
-        <button type="submit" className={saveButtonName} disabled={!isValid}>
+        <button type="submit" className={saveButtonName} disabled={!isSavedButtonActive}>
           <p className="profile__save-text">Сохранить</p>
         </button>
         {props.editSuccess && (

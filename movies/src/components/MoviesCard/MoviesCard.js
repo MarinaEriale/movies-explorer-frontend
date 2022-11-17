@@ -91,9 +91,12 @@ function MovieCard(props) {
             onClick={handleLikeClick}
           >
             {/* {likeButtonText} */}
-            <div className={greenPointName}>
+            {location.pathname === "/movies" && (
+              <div className={greenPointName}></div>
+            )}
+            {location.pathname === "/saved-movies" && (
               <p className="movieCard__cross">✖</p>
-            </div>
+            )}
           </button>
         </div>
       </div>

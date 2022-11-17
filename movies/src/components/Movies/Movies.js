@@ -29,15 +29,18 @@ function Movies(props) {
 
   console.log(checked);
 
-  const windowInnerWidth = document.documentElement.clientWidth;
+  // const windowInnerWidth = document.documentElement.clientWidth;
 
-  // React.useEffect(() => {
-  //   console.log(movieCards);
-  // }, [movieCards]);
+  const [windowInnerWidth, setWindowInnerWidth] = useState(
+    document.documentElement.clientWidth
+  );
 
-  // const handleInputChange = (e) => {
-  //   setsearchQuery(e.target.value);
-  // };
+  React.useEffect(() => {
+    function handleResize() {
+      setWindowInnerWidth(document.documentElement.clientWidth);
+    }
+    window.addEventListener("resize", handleResize);
+  });
 
   function handleChange() {
     setChecked(!checked);

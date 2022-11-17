@@ -1,12 +1,5 @@
 import React, { useState } from "react";
-import {
-  Route,
-  Routes,
-  Navigate,
-  useNavigate,
-  Link,
-  useLocation,
-} from "react-router-dom";
+import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
 import Main from "../Main/Main";
 import "./App.css";
 import Login from "../Login/Login";
@@ -34,7 +27,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [savedMovieCards, setSavedMovieCards] = useState([]);
   const [savedMovies, setSavedMovies] = useState([]);
- const [editSuccess, setEditSuccess] = useState(false);
+  const [editSuccess, setEditSuccess] = useState(false);
 
   React.useEffect(() => {
     if (!JSON.parse(localStorage.getItem("data"))) {
@@ -53,9 +46,11 @@ function App() {
       api
         .getSavedMovies()
         .then((movies) => {
-          const ownMovies = movies.data.filter((item) => item.owner === currentUser._id)
-         
-          console.log(ownMovies)
+          const ownMovies = movies.data.filter(
+            (item) => item.owner === currentUser._id
+          );
+
+          console.log(ownMovies);
           setSavedMovies(ownMovies);
           localStorage.setItem("savedMovies", JSON.stringify(ownMovies));
         })
@@ -81,12 +76,24 @@ function App() {
   const handleTokenCheck = () => {
     if (localStorage.getItem("jwt")) {
       const jwt = localStorage.getItem("jwt");
-      checkToken(jwt).then((res) => {
-        if (res) {
-          setLoggedIn(true);
-          navigate("/movies");
-        }
-      });
+      checkToken(jwt)
+        .then((res) => {
+          if (res) {
+            setLoggedIn(true);
+            navigate("/movies");
+          }
+        })
+        .catch((err) => {
+          if (err.status === 401) {
+            localStorage.clear();
+            setLoggedIn(false);
+            navigate("/");
+          } else {
+            localStorage.clear();
+            setLoggedIn(false);
+            navigate("/");
+          }
+        });
     }
   };
 
@@ -124,13 +131,64 @@ function App() {
   }, [loggedIn]);
 
   function handleCardSave(data) {
-    api
-      .addNewMovie(data)
-      .then((newCard) => {
-        setSavedMovieCards([newCard, ...savedMovieCards]);
-      })
-      .catch((err) => console.log("Ошибка", err));
+    const jwt = localStorage.getItem("jwt");
+    if (localStorage.getItem("jwt")) {
+      checkToken(jwt)
+        .then((res) => {
+          if (res) {
+            api
+              .addNewMovie(data)
+              .then((newCard) => {
+                setSavedMovieCards([newCard, ...savedMovieCards]);
+              })
+              .catch((err) => {
+                if (err === '401') {
+                  localStorage.clear();
+                  setLoggedIn(false);
+                  navigate("/");
+                } else {
+                  localStorage.clear();
+                  setLoggedIn(false);
+                  navigate("/");
+                }
+              });
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          if (err === '401') {
+            localStorage.clear();
+            setLoggedIn(false);
+            navigate("/");
+          } else {
+            localStorage.clear();
+            setLoggedIn(false);
+            navigate("/");
+          }
+        });
+    } else {
+      localStorage.clear();
+      setLoggedIn(false);
+      navigate("/");
+    }
   }
+
+  // function handleCardSave(data) {
+  //   handleTokenCheck();
+  //   if (loggedIn) {
+  //     api
+  //       .addNewMovie(data)
+  //       .then((newCard) => {
+  //         setSavedMovieCards([newCard, ...savedMovieCards]);
+  //       })
+  //       .catch((err) => console.log("Ошибка", err));
+  //   }
+  //   else {
+  //     localStorage.clear();
+  //     setLoggedIn(false);
+  //     navigate("/");
+  //   }
+  // }
 
   function handleCardDelete(movie) {
     console.log(movie);
@@ -164,7 +222,9 @@ function App() {
     <CurrentUserContext.Provider value={currentUser}>
       <div className="background">
         <div className="page">
-          {loggedIn ? location.pathname === "/" && <HeaderLogged /> : location.pathname === "/" && <Header />}
+          {loggedIn
+            ? location.pathname === "/" && <HeaderLogged />
+            : location.pathname === "/" && <Header />}
           {(location.pathname === "/movies" ||
             location.pathname === "/saved-movies" ||
             location.pathname === "/profile") && (

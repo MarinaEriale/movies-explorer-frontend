@@ -1,139 +1,132 @@
 .movieCard {
-    padding: 0;
-    margin: 0;
-    justify-self: center;
-    display: flex;
-    flex-direction: column;
-    position: relative;
+  padding: 0;
+  margin: 0;
+  justify-self: center;
+  display: flex;
+  flex-direction: column;
+  position: relative;
 }
 
 .movieCard__image {
-    width: 270px;
-    height: 151px;
-    border-radius: 10px 10px 0px 0px;
-    display: block;
-    cursor: pointer;
+  width: 270px;
+  height: 151px;
+  border-radius: 10px 10px 0px 0px;
+  display: block;
+  cursor: pointer;
 }
 
-.movieCard__info {   
-    width: 270px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    border-radius:  0px 0px 10px 10px;
-    background: #FDFDFD;
-    box-shadow: 0px 16px 24px rgba(0, 0, 0, 0.05); 
+.movieCard__info {
+  width: 270px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-radius: 0px 0px 10px 10px;
+  background: #fdfdfd;
+  box-shadow: 0px 16px 24px rgba(0, 0, 0, 0.05);
 }
 
 .movieCard__text-container {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .movieCard__text {
-    font-family: 'Inter', 'Arial', sans-serif;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 13px;
-    line-height: 16px;
-    color: #000000;
-    margin: 14px 0 0 12px;
-    padding: 0;
-    text-overflow: ellipsis;
+  font-family: "Inter", "Arial", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+  color: #000000;
+  margin: 14px 0 0 12px;
+  padding: 0;
+  text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
   max-width: 206px;
-
 }
 
 .movieCard__duration {
-    font-family: 'Inter', 'Arial', sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 11px;
-    line-height: 13px;
-    color: #A0A0A0;
-    margin: 10px 0 14px 12px;
-    padding: 0;
+  font-family: "Inter", "Arial", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 13px;
+  color: #a0a0a0;
+  margin: 10px 0 14px 12px;
+  padding: 0;
 }
 
 .movieCard__like-button {
-    width: 16px;
-    height: 16px;
-    margin: 14px 12px 0 0;
-    border: none;
-    background: #F9F9F9;
-    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.09);
-    border-radius: 50px;
-    cursor: pointer;
-    padding: 0;    
-}
-
-.movieCard__like-button:hover {
-    background: transparent;
-    box-shadow: none;
+  width: 16px;
+  height: 16px;
+  margin: 14px 12px 0 0;
+  border: none;
+  background: #f9f9f9;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.09);
+  border-radius: 50px;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .movieCard__green-point {
-    width: 14px;
-    height: 14px;    
-    border: none;
-    background: #2BE080;
-    border-radius: 50px;
-    
-    margin: 0;
-    padding: 1px 1px 1px 1px;
-    opacity: 0;
+  width: 12px;
+  height: 12px;
+  border: none;
+  background: #2be080;
+  border-radius: 50px;
+
+  padding: 0;
+  margin: 0;
+  opacity: 0;
 }
 
 .movieCard__green-point_dislike {
-    opacity: 1;
-}
-
-.movieCard__green-point:hover {
-    background: transparent;
+  opacity: 1;
 }
 
 .movieCard__cross {
-    box-shadow: none;
-    font-size: 8px;
-    font-family: 'Inter', 'Arial', sans-serif;
-    font-style: normal;
-    font-weight: 500;    
-    background-color: transparent;
-    z-index: 2;
-    margin-top: 3px;
-    margin-bottom: 3px;
-    padding: 0;
-    opacity: 0;
+  box-shadow: none;
+  font-size: 8px;
+  font-family: "Inter", "Arial", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  background-color: transparent;
+  z-index: 2;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  padding: 0;
+  opacity: 0;
 }
 
 .movieCard__cross:hover {
-    opacity: 1;
+  opacity: 1;
 }
 
-
-
 @media screen and (max-width: 800px) {
-    .movieCard__image {
-        height: 190px;
-        width: 339px;
-    }
+  .movieCard__image {
+    height: 190px;
+    width: 339px;
+  }
 
-    .movieCard__info {
-        width: 339px;
-    }
+  .movieCard__info {
+    width: 339px;
+  }
 }
 
 @media screen and (max-width: 430px) {
-    .movieCard__image {
-        width: 300px;
-        height: 168px;
-    }
+  .movieCard__image {
+    width: 300px;
+    height: 168px;
+  }
 
-    .movieCard__info {
-        width: 300px;
-    }
+  .movieCard__info {
+    width: 300px;
+  }
 
+  .movieCard__cross {
+    opacity: 1;
+  }
 }
-  
