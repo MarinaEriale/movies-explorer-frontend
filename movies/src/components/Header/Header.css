@@ -12,6 +12,10 @@
     margin: 18px 0 18px 70px;
 }
 
+.header_loggedIn {
+    background-color: #FFFFFF;
+}
+
 @media screen and (max-width: 800px) {
    .logo {
     margin-left: 30px;

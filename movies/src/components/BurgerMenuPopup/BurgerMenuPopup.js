@@ -32,7 +32,7 @@ function BurgerMenuPopup(props) {
             alt="Схематичное изображение головы и плеч человека"
             className="burgerMenuPopup__logo"
           ></img>
-          <Link to="/profile" className="burgerMenuPopup__account-name">
+          <Link to="/profile" className="burgerMenuPopup__account-name" onClick={props.onClose}>
             Аккаунт
           </Link>
         </button>

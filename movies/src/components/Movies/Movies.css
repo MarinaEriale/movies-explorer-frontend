@@ -1,4 +1,9 @@
 .movies__screen {
     z-index: 1;
     position: relative;
+    min-height: calc(100vh - 252.4px);
+}
+
+.moviesNotFound {
+    text-align: center;
 }
